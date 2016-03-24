@@ -1,1 +1,0 @@
-cmd_/home/hange/code/book_examples/globalmem/globalmem.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/hange/code/book_examples/globalmem/globalmem.ko /home/hange/code/book_examples/globalmem/globalmem.o /home/hange/code/book_examples/globalmem/globalmem.mod.o
