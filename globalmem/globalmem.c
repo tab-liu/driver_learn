@@ -16,7 +16,7 @@ module_param(globalmem_major, int, S_IRUGO);
 struct globalmem_dev {
 	struct cdev cdev;
 	unsigned char mem[GLOBALMEM_SIZE];
-    struct mutex mutex;
+     struct mutex mutex;
 };
 struct globalmem_dev *globalmem_devp;
 
@@ -37,12 +37,12 @@ static long globalmem_ioctl(struct file *filp, unsigned int cmd, unsigned long a
 	struct globalmem_dev *dev = filp->private_data;
 	switch (cmd) {
 	case MEM_CLEAR:
-        mutex_lock(&dev->mutex);
-        memset(dev->mem, 0, GLOBALMEM_SIZE);
-        mutex_unlock(&dev->mutex);
+      mutex_lock(&dev->mutex);
+      memset(dev->mem, 0, GLOBALMEM_SIZE);
+      mutex_unlock(&dev->mutex);
 
-		printk(KERN_INFO "globalmem is set to zero\n");
-		break;
+	printk(KERN_INFO "globalmem is set to zero\n");
+	break;
 	default:
 		return -EINVAL;
 	}
@@ -96,7 +96,7 @@ static ssize_t globalmem_write(struct file *filp, const char __user *buf, size_t
 	} else {
 		*ppos += count;
 		ret = count;
-		printk(KERN_INFO "written %u bute(s) from %lu\n", count, p);
+		printk(KERN_INFO "written %u byte(s) from %lu\n", count, p);
 	}
 
     mutex_unlock(&dev->mutex);
@@ -193,5 +193,5 @@ module_exit(globalmem_exit);
 
 MODULE_AUTHOR("Tab Liu @ <dearhange@126.com>");
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("My first globalmem driver problem.");
+MODULE_DESCRIPTION("My first globalmem driver program.");
 
